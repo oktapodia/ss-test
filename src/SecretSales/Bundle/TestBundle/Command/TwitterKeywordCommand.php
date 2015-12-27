@@ -76,7 +76,7 @@ class TwitterKeywordCommand extends ContainerAwareCommand
                 self::OPTION_SKIP_URLS,
                 null,
                 InputOption::VALUE_NONE,
-                'If enabled, all urls would be skipped'
+                'If enabled, all urls will be skipped'
             );
     }
 
