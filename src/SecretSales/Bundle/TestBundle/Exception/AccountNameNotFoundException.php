@@ -28,5 +28,4 @@ class AccountNameNotFoundException extends NotFoundHttpException
     {
         parent::__construct($message, $previous, $code);
     }
-
 }
