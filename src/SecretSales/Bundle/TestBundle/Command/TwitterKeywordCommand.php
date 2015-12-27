@@ -29,6 +29,7 @@ class TwitterKeywordCommand extends ContainerAwareCommand
 
     const ARGUMENT_ACCOUNT_NAME             = 'accountName';
     const ARGUMENT_DESCRIPTION_ACCOUNT_NAME = 'Which twitter account name?';
+    const OPTION_SKIP_URLS                  = 'skipUrls';
     const OPTION_TWEETS_NUMBER              = 'tweetsNumber';
 
     /**
@@ -40,6 +41,11 @@ class TwitterKeywordCommand extends ContainerAwareCommand
      * @var int
      */
     protected $tweetsNumber;
+
+    /**
+     * @var bool
+     */
+    protected $skipUrls = false;
 
     /**
      * @var ProviderInterface
@@ -65,6 +71,12 @@ class TwitterKeywordCommand extends ContainerAwareCommand
                 InputOption::VALUE_REQUIRED,
                 'If set, the tweets number can be changed',
                 self::DEFAULT_TWEETS_NUMBER
+            )
+            ->addOption(
+                self::OPTION_SKIP_URLS,
+                null,
+                InputOption::VALUE_NONE,
+                'If enabled, all urls would be skipped'
             );
     }
 
@@ -88,6 +100,10 @@ class TwitterKeywordCommand extends ContainerAwareCommand
     {
         if ($tweetsNumber = $input->getOption(self::OPTION_TWEETS_NUMBER)) {
             $this->tweetsNumber = (int) $tweetsNumber;
+        }
+
+        if ($skipUrls = $input->getOption(self::OPTION_SKIP_URLS)) {
+            $this->skipUrls = $skipUrls;
         }
 
         if (!($accountName = $input->getArgument(self::ARGUMENT_ACCOUNT_NAME))) {
@@ -119,6 +135,12 @@ class TwitterKeywordCommand extends ContainerAwareCommand
         }
 
         $container           = $this->getContainer();
+
+        if ($this->skipUrls) {
+            $skipUrlsDecorator = $container->get('ss.decorator.skip_urls');
+            $posts             = $skipUrlsDecorator->decorate($posts);
+        }
+
         $frequencyCalculator = $container->get('ss.calculator.frequency');
         $frequencySorter     = $container->get('ss.sorter.frequency');
 
