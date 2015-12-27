@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    consumer_key:        ~
+    consumer_secret:     ~
+    access_token:        ~
+    access_token_secret: ~

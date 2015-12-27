@@ -22,7 +22,28 @@ class SecretSalesTestExtension extends Extension
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $configs);
 
+        $this->configureParametersFromConfigurations($config, $container);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+    }
+
+    /**
+     * Convert the secret_sales_test configuration in config.yml to parameters
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    protected function configureParametersFromConfigurations(array $config, ContainerBuilder $container)
+    {
+        if (!array_key_exists('providers', $config)) {
+            return;
+        }
+
+        foreach ($config['providers'] as $providerName => $providerConfigurations) {
+            foreach ($providerConfigurations as $providerConfigurationKey => $providerConfigurationValue) {
+                $container->setParameter('ss.'.$providerName.'.'.$providerConfigurationKey, $providerConfigurationValue);
+            }
+        }
     }
 }
