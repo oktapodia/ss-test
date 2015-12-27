@@ -12,8 +12,10 @@
         <parameter key="ss.calculator.frequency.class">SecretSales\Bundle\TestBundle\Calculator\FrequencyCalculator</parameter>
         <parameter key="ss.comparator.reverse_numeric.class">SecretSales\Bundle\TestBundle\Comparator\ReverseNumericComparator</parameter>
         <parameter key="ss.sorter.frequency.class">SecretSales\Bundle\TestBundle\Sorter\FrequencySorter</parameter>
+        <parameter key="ss.decorator.skip_urls.class">SecretSales\Bundle\TestBundle\Decorator\SkipUrlsDecorator</parameter>
     </parameters>
     <services>
+        <service id="ss.decorator.skip_urls" class="%ss.decorator.skip_urls.class%" />
         <service id="ss.datatransformer.array_to_string" class="%ss.datatransformer.array_to_string.class%" />
         <service id="ss.comparator.reverse_numeric" class="%ss.comparator.reverse_numeric.class%" />
         <service id="ss.sorter.frequency" class="%ss.sorter.frequency.class%">
