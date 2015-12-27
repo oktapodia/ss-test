@@ -62,7 +62,7 @@ class TwitterKeywordCommand extends ContainerAwareCommand
             ->addOption(
                 self::OPTION_TWEETS_NUMBER,
                 null,
-                InputOption::VALUE_OPTIONAL,
+                InputOption::VALUE_REQUIRED,
                 'If set, the tweets number can be changed',
                 self::DEFAULT_TWEETS_NUMBER
             );
