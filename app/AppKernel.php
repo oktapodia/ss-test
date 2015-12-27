@@ -12,7 +12,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new AppBundle\AppBundle(),
+            new SecretSales\Bundle\TestBundle\SecretSalesTestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
