@@ -4,6 +4,33 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--<services>-->
-    <!--</services>-->
+    <parameters>
+        <parameter key="ss.provider.container.class">SecretSales\Bundle\TestBundle\Provider\ProviderContainer</parameter>
+        <parameter key="ss.provider.twitter.class">SecretSales\Bundle\TestBundle\Provider\TwitterProvider</parameter>
+        <parameter key="ss.formatter.twitter_response.class">SecretSales\Bundle\TestBundle\Formatter\TwitterResponseFormatter</parameter>
+        <parameter key="ss.datatransformer.array_to_string.class">SecretSales\Bundle\TestBundle\DataTransformer\ArrayToStringDataTransformer</parameter>
+        <parameter key="ss.calculator.frequency.class">SecretSales\Bundle\TestBundle\Calculator\FrequencyCalculator</parameter>
+        <parameter key="ss.comparator.reverse_numeric.class">SecretSales\Bundle\TestBundle\Comparator\ReverseNumericComparator</parameter>
+        <parameter key="ss.sorter.frequency.class">SecretSales\Bundle\TestBundle\Sorter\FrequencySorter</parameter>
+    </parameters>
+    <services>
+        <service id="ss.datatransformer.array_to_string" class="%ss.datatransformer.array_to_string.class%" />
+        <service id="ss.comparator.reverse_numeric" class="%ss.comparator.reverse_numeric.class%" />
+        <service id="ss.sorter.frequency" class="%ss.sorter.frequency.class%">
+            <argument type="service" id="ss.comparator.reverse_numeric" />
+        </service>
+        <service id="ss.calculator.frequency" class="%ss.calculator.frequency.class%">
+            <argument type="service" id="ss.datatransformer.array_to_string" />
+        </service>
+        <service id="ss.formatter.twitter_response" class="%ss.formatter.twitter_response.class%" />
+        <service id="ss.provider.container" class="%ss.provider.container.class%" />
+        <service id="ss.provider.twitter" class="%ss.provider.twitter.class%">
+            <argument type="string">%ss.twitter.consumer_key%</argument>
+            <argument type="string">%ss.twitter.consumer_secret%</argument>
+            <argument type="string">%ss.twitter.access_token%</argument>
+            <argument type="string">%ss.twitter.access_token_secret%</argument>
+            <argument type="service" id="ss.formatter.twitter_response" />
+            <tag name="ss.provider" />
+        </service>
+    </services>
 </container>
