@@ -20,21 +20,6 @@ abstract class AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    abstract public function checkCredentials();
-
-    /**
-     * {@inheritdoc}
-     */
-    abstract public function checkAccount($accountName);
-
-    /**
-     * {@inheritdoc}
-     */
-    abstract public function getNLatestPosts($number, $accountName);
-
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return static::NAME;

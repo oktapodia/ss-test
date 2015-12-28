@@ -17,5 +17,6 @@ class SecretSalesTestBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new HydrateProviderContainerCompilerPass());
+        parent::build($container);
     }
 }
