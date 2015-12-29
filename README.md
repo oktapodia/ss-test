@@ -5,7 +5,7 @@ SS test
 
 To use the keyword frequency command, please copy `app/config/parameters.yml.dist` to `app/config/parameters.yml` and configure it with your twitter application credentials.
 
-Run this command with : `app/console ss:twitter:keyword:frequency [options] [--] <accountName>`
+Run this command with : `app/console ss:test:twitter_keyword [options] [--] <accountName>`
 
 OPTIONS
 -------

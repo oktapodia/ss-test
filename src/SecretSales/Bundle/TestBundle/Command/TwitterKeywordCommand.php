@@ -57,7 +57,7 @@ class TwitterKeywordCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('ss:twitter:keyword:frequency')
+            ->setName('ss:test:twitter_keyword')
             ->setDescription('Output the keywords frequency of a twitter account')
             ->addArgument(
                 self::ARGUMENT_ACCOUNT_NAME,
