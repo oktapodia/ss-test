@@ -43,10 +43,10 @@ class Configuration implements ConfigurationInterface
         $node    = $builder->root('twitter');
         $node
             ->children()
-                ->scalarNode('consumer_key')->end()
-                ->scalarNode('consumer_secret')->end()
-                ->scalarNode('access_token')->end()
-                ->scalarNode('access_token_secret')->end()
+                ->scalarNode('consumer_key')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('consumer_secret')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('access_token')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('access_token_secret')->isRequired()->cannotBeEmpty()->end()
             ->end();
 
         return $node;
