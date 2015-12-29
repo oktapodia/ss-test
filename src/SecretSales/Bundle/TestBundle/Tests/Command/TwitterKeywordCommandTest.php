@@ -23,7 +23,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 class TwitterKeywordCommandTest extends WebTestCase
 {
     /**
-     * @var TwitterOAuth
+     * @var TwitterOAuth|\Phake_IMock
      */
     protected $twitterOauth;
     /**
