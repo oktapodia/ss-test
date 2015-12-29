@@ -1,6 +1,7 @@
 {
     "name": "secret-sales/test",
     "license": "proprietary",
+    "description": "Secret sales test, this project provides a command to calculate the tweet frequency about the latest 100 tweets",
     "authors": [
         {
             "name": "BRAMILLE Sébastien",
