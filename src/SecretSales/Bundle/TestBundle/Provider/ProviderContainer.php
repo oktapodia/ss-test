@@ -42,7 +42,7 @@ class ProviderContainer
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|ProviderInterface[]
      */
     public function getProviders()
     {

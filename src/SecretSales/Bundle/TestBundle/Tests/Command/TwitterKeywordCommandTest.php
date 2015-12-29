@@ -44,6 +44,9 @@ class TwitterKeywordCommandTest extends WebTestCase
      */
     protected $fixtures;
 
+    /**
+     * SetUp
+     */
     public function setUp()
     {
         static::$kernel = static::createKernel();
@@ -65,6 +68,9 @@ class TwitterKeywordCommandTest extends WebTestCase
         $this->parameters = array('account_name' => 'test');
     }
 
+    /**
+     * Test execute with an account name in command
+     */
     public function testExecuteWithAccountNameInCommand()
     {
         $this->setTweetsNumber(100);
@@ -75,6 +81,9 @@ class TwitterKeywordCommandTest extends WebTestCase
         $this->runBaseFrequencyAssertion($commandTester);
     }
 
+    /**
+     * Test execute with an account name in command and Only one tweet
+     */
     public function testExecuteWithAccountNameInCommandAndOneTweet()
     {
         $tweetsNumber = 1;
@@ -105,6 +114,9 @@ I\'m,1
 an,1/', $commandTester->getDisplay());
     }
 
+    /**
+     * Test execute without an account name in the command
+     */
     public function testExecuteWithoutAccountName()
     {
         $this->setTweetsNumber(100);
@@ -119,6 +131,9 @@ an,1/', $commandTester->getDisplay());
         $this->runBaseFrequencyAssertion($commandTester);
     }
 
+    /**
+     * Test execute with an acocunt name and skip urls option
+     */
     public function testExecuteWithAccountNameAndSkipUrlsOption()
     {
         $this->expectedValue = $this->fixtures->getFixtureArray(10);
@@ -153,12 +168,18 @@ an,10/', $commandTester->getDisplay());
 
     }
 
+    /**
+     * @param CommandTester $commandTester
+     */
     protected function runBaseAssertions(CommandTester $commandTester)
     {
         $this->assertRegExp(sprintf('/%d tweets will be displayed/', count($this->expectedValue)), $commandTester->getDisplay());
         $this->assertRegExp(sprintf('/([0-9]+) words/', $this->parameters['account_name'], count($this->expectedValue)), $commandTester->getDisplay());
     }
 
+    /**
+     * @param CommandTester $commandTester
+     */
     protected function runBaseFrequencyAssertion(CommandTester $commandTester)
     {
         $this->assertRegExp('/a,200
@@ -179,12 +200,20 @@ I\'m,100
 an,100/', $commandTester->getDisplay());
     }
 
+    /**
+     * @param $tweetsNumber
+     */
     protected function setTweetsNumber($tweetsNumber)
     {
         $this->expectedValue = $this->fixtures->getFixtureArray($tweetsNumber);
         \Phake::when($this->twitterOauth)->get(\Phake::anyParameters())->thenReturn($this->expectedValue);
     }
 
+    /**
+     * @param string $input
+     *
+     * @return resource
+     */
     protected function getInputStream($input)
     {
         $stream = fopen('php://memory', 'r+', false);

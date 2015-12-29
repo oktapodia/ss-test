@@ -21,7 +21,7 @@ interface FormatterInterface
      * @param array  $array
      * @param string $method
      *
-     * @return mixed
+     * @return array
      */
     public function format(array $array, $method);
 }

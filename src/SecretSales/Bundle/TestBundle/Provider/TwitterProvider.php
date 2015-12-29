@@ -96,7 +96,7 @@ class TwitterProvider extends AbstractProvider
     /**
      * @param array $posts
      *
-     * @return bool
+     * @return array
      */
     protected function extractPosts(array $posts)
     {
