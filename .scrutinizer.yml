@@ -1,0 +1,18 @@
+build:
+    environment:
+        php:
+            version: 5.6.9
+    tests:
+        override:
+            -
+                command: 'phpunit -c app/ --coverage-clover=coverage'
+                coverage:
+                    file: 'coverage'
+                    format: 'php-clover'
+filter:
+    paths:
+        - 'src/*'
+checks:
+    php: true
+coding_style:
+    php: true
