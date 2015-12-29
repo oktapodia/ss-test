@@ -9,6 +9,8 @@ build:
                 coverage:
                     file: 'coverage'
                     format: 'php-clover'
+tools:
+    php_code_coverage: true
 filter:
     paths:
         - 'src/*'
