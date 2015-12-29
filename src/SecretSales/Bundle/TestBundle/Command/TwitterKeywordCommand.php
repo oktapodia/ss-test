@@ -152,14 +152,14 @@ class TwitterKeywordCommand extends ContainerAwareCommand
     }
 
     /**
-     * Display the result with the asked formating
+     * Display the result with the asked formatting
      *
-     * @param array           $datas
+     * @param array           $data
      * @param OutputInterface $output
      */
-    protected function displayResult(array $datas, OutputInterface $output)
+    protected function displayResult(array $data, OutputInterface $output)
     {
-        foreach ($datas as $keyword => $count) {
+        foreach ($data as $keyword => $count) {
             $output->writeln(sprintf('%s,%d', $keyword, $count));
         }
     }

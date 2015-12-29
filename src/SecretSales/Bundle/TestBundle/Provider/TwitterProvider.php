@@ -48,9 +48,7 @@ class TwitterProvider extends AbstractProvider
      */
     public function getNLatestPosts($postsNumber, $accountName)
     {
-        if (!$this->checkAccount($accountName)) {
-            return array();
-        }
+        $this->checkAccount($accountName);
 
         $posts = $this->twitterOauth->get('statuses/user_timeline', array(
             'screen_name'         => $accountName,
@@ -87,7 +85,7 @@ class TwitterProvider extends AbstractProvider
         $application = $this->twitterOauth->get("account/verify_credentials");
 
         if (isset($application->errors)) {
-            throw new BadAuthenticationException(sprintf('An error occured during the authentication : %s', implode(', ', $this->parseErrors($application->errors))));
+            throw new BadAuthenticationException(sprintf('An error occurred during the authentication : %s', implode(', ', $this->parseErrors($application->errors))));
         }
 
         return true;

@@ -44,7 +44,7 @@ class FrequencyCalculatorTest extends \PHPUnit_Framework_TestCase
         \Phake::when($this->transformer)->reverseTransform(\Phake::anyParameters())->thenReturn($string);
         $this->frequencyCalculator->initialize(array($string));
 
-        $this->assertSame($string, $this->frequencyCalculator->getString());
+        static::assertSame($string, $this->frequencyCalculator->getString());
     }
 
     /**
@@ -58,7 +58,7 @@ class FrequencyCalculatorTest extends \PHPUnit_Framework_TestCase
         $this->frequencyCalculator->setString($string);
         $result = $this->frequencyCalculator->calculate();
 
-        $this->assertSame($expectedArray, $result);
+        static::assertSame($expectedArray, $result);
     }
 
     /**
@@ -77,18 +77,18 @@ class FrequencyCalculatorTest extends \PHPUnit_Framework_TestCase
                 ),
             ),
             array(
-                'string' => 'I\'m a test string with a multiple occurencies to run my test',
+                'string' => 'I\'m a test string with a multiple occurences to run my test',
                 'expectedArray'  => array(
-                    'I\'m'        => 1,
-                    'a'           => 2,
-                    'test'        => 2,
-                    'string'      => 1,
-                    'with'        => 1,
-                    'multiple'    => 1,
-                    'occurencies' => 1,
-                    'to'          => 1,
-                    'run'         => 1,
-                    'my'          => 1,
+                    'I\'m'       => 1,
+                    'a'          => 2,
+                    'test'       => 2,
+                    'string'     => 1,
+                    'with'       => 1,
+                    'multiple'   => 1,
+                    'occurences' => 1,
+                    'to'         => 1,
+                    'run'        => 1,
+                    'my'         => 1,
                 ),
             ),
         );

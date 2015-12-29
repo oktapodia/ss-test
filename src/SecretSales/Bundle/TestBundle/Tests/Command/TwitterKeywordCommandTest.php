@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SecretSales\Bundle\TestBundle\Tests\Comand;
+namespace SecretSales\Bundle\TestBundle\Tests\Command;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 use SecretSales\Bundle\TestBundle\Command\TwitterKeywordCommand;
@@ -96,7 +96,7 @@ class TwitterKeywordCommandTest extends WebTestCase
         ));
 
         $this->runBaseAssertions($commandTester);
-        $this->assertRegExp('/a,2
+        static::assertRegExp('/a,2
 test,2
 run,1
 to,1
@@ -109,7 +109,7 @@ and,1
 with,1
 string,1
 multiple,1
-occurencies,1
+occurences,1
 I\'m,1
 an,1/', $commandTester->getDisplay());
     }
@@ -126,13 +126,13 @@ an,1/', $commandTester->getDisplay());
         $commandTester = new CommandTester($this->command);
         $commandTester->execute(array('command' => $this->command->getName()));
 
-        $this->assertRegExp(sprintf('/Which twitter account name?/', $this->parameters['account_name'], count($this->expectedValue)), $commandTester->getDisplay());
+        static::assertRegExp('/Which twitter account name?/', $commandTester->getDisplay());
         $this->runBaseAssertions($commandTester);
         $this->runBaseFrequencyAssertion($commandTester);
     }
 
     /**
-     * Test execute with an acocunt name and skip urls option
+     * Test execute with an account name and skip urls option
      */
     public function testExecuteWithAccountNameAndSkipUrlsOption()
     {
@@ -148,7 +148,7 @@ an,1/', $commandTester->getDisplay());
 
 
         $this->runBaseAssertions($commandTester);
-        $this->assertRegExp('
+        static::assertRegExp('
         /a,20
 test,20
 run,10
@@ -162,7 +162,7 @@ and,10
 with,10
 string,10
 multiple,10
-occurencies,10
+occurences,10
 I\'m,10
 an,10/', $commandTester->getDisplay());
 
@@ -173,8 +173,8 @@ an,10/', $commandTester->getDisplay());
      */
     protected function runBaseAssertions(CommandTester $commandTester)
     {
-        $this->assertRegExp(sprintf('/%d tweets will be displayed/', count($this->expectedValue)), $commandTester->getDisplay());
-        $this->assertRegExp(sprintf('/([0-9]+) words/', $this->parameters['account_name'], count($this->expectedValue)), $commandTester->getDisplay());
+        static::assertRegExp(sprintf('/%d tweets will be displayed/', count($this->expectedValue)), $commandTester->getDisplay());
+        static::assertRegExp('/([0-9]+) words/', $commandTester->getDisplay());
     }
 
     /**
@@ -182,7 +182,7 @@ an,10/', $commandTester->getDisplay());
      */
     protected function runBaseFrequencyAssertion(CommandTester $commandTester)
     {
-        $this->assertRegExp('/a,200
+        static::assertRegExp('/a,200
 test,200
 run,100
 to,100
@@ -195,7 +195,7 @@ and,100
 with,100
 string,100
 multiple,100
-occurencies,100
+occurences,100
 I\'m,100
 an,100/', $commandTester->getDisplay());
     }
@@ -217,7 +217,7 @@ an,100/', $commandTester->getDisplay());
     protected function getInputStream($input)
     {
         $stream = fopen('php://memory', 'r+', false);
-        fputs($stream, $input);
+        fwrite($stream, $input);
         rewind($stream);
 
         return $stream;

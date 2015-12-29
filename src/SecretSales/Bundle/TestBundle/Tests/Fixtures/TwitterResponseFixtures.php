@@ -36,11 +36,11 @@ class TwitterResponseFixtures
     public function __construct()
     {
         $this->item = new \stdClass();
-        $this->item->text = 'I\'m a test string with a multiple occurencies and an url to run my test http://secretsales.fr';
+        $this->item->text = 'I\'m a test string with a multiple occurences and an url to run my test http://secretsales.fr';
         $this->itemWithError = new \stdClass();
-        $this->itemWithError->message = 'An error occured';
+        $this->itemWithError->message = 'An error occurred';
         $this->itemWithError2 = new \stdClass();
-        $this->itemWithError2->message = 'A second error occured';
+        $this->itemWithError2->message = 'A second error occurred';
     }
 
     /**

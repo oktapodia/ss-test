@@ -41,7 +41,7 @@ class FrequencySorterTest extends \PHPUnit_Framework_TestCase
     public function testSort(array $data, array $expected)
     {
         $result = $this->frequencySorter->sort($data);
-        $this->assertEquals($expected, $result);
+        static::assertEquals($expected, $result);
     }
 
     /**

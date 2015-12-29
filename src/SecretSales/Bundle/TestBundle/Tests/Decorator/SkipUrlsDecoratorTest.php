@@ -27,7 +27,7 @@ class SkipUrlsDecoratorTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new SkipUrlsDecorator();
         $result    = $decorator->decorate($value);
-        $this->assertEquals($expected, $result);
+        static::assertEquals($expected, $result);
     }
 
     /**

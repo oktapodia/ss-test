@@ -61,7 +61,7 @@ class TwitterProviderTest extends BasePHPUnitTestCase
 
         $result = $this->twitterProvider->getNLatestPosts($postsNumber, 'test');
 
-        $this->assertEquals($expected, $result);
+        static::assertEquals($expected, $result);
     }
 
     /**
@@ -71,7 +71,7 @@ class TwitterProviderTest extends BasePHPUnitTestCase
     {
         $result = $this->twitterProvider->checkAccount('test');
 
-        $this->assertTrue($result);
+        static::assertTrue($result);
     }
 
     /**
@@ -95,7 +95,7 @@ class TwitterProviderTest extends BasePHPUnitTestCase
     {
         $result = $this->twitterProvider->checkCredentials();
 
-        $this->assertTrue($result);
+        static::assertTrue($result);
     }
 
     /**
@@ -110,7 +110,7 @@ class TwitterProviderTest extends BasePHPUnitTestCase
     {
         $result   = $this->invokeMethod($this->twitterProvider, 'extractPosts', array($this->fixtures->getFixtureArray($postsNumber)));
 
-        $this->assertEquals($expected, $result);
+        static::assertEquals($expected, $result);
     }
 
     /**
@@ -120,9 +120,9 @@ class TwitterProviderTest extends BasePHPUnitTestCase
     {
         $result   = $this->invokeMethod($this->twitterProvider, 'parseErrors', array($this->fixtures->getFixtureItemWithErrorArray()));
 
-        $this->assertEquals(array(
-                "An error occured",
-                "A second error occured",
+        static::assertEquals(array(
+                "An error occurred",
+                "A second error occurred",
             ), $result);
     }
 
@@ -133,7 +133,7 @@ class TwitterProviderTest extends BasePHPUnitTestCase
     {
         $result   = $this->invokeMethod($this->twitterProvider, 'parseErrors', array($this->fixtures->getFixtureItemWithErrorArray(), true));
 
-        $this->assertEquals("An error occured, A second error occured", $result);
+        static::assertEquals("An error occurred, A second error occurred", $result);
     }
 
     /**
@@ -143,14 +143,14 @@ class TwitterProviderTest extends BasePHPUnitTestCase
     {
         $result   = $this->invokeMethod($this->twitterProvider, 'parseErrors', array($this->fixtures->getFixtureItemWithErrorArray(), true, '|'));
 
-        $this->assertEquals("An error occured|A second error occured", $result);
+        static::assertEquals("An error occurred|A second error occurred", $result);
     }
 
     /**
      * Test checkCredentials method with bad credentials
      *
      * @expectedException SecretSales\Bundle\TestBundle\Exception\BadAuthenticationException
-     * @expectedExceptionMessage An error occured during the authentication : An error occured, A second error occured
+     * @expectedExceptionMessage An error occurred during the authentication : An error occurred, A second error occurred
      */
     public function testCheckCredentialsWithBadCredentials()
     {

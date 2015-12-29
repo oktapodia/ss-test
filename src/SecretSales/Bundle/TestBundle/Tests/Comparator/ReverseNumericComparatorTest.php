@@ -26,7 +26,7 @@ class ReverseNumericComparatorTest extends \PHPUnit_Framework_TestCase
     public function testCompare($data, $expected)
     {
         $comparator = new ReverseNumericComparator();
-        $this->assertEquals($expected, $comparator->compare($data['a'], $data['b']));
+        static::assertEquals($expected, $comparator->compare($data['a'], $data['b']));
     }
 
     /**

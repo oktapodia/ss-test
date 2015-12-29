@@ -42,7 +42,7 @@ class TwitterResponseFormatterTest extends \PHPUnit_Framework_TestCase
     {
         $result = $this->formatter->format($array, $method);
 
-        $this->assertSame($expected, $result);
+        static::assertSame($expected, $result);
     }
 
     /**

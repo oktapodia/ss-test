@@ -38,7 +38,7 @@ class ArrayToStringDataTransformerTest extends \PHPUnit_Framework_TestCase
     {
         $result = $this->transformer->transform($string);
 
-        $this->assertEquals($array, $result);
+        static::assertEquals($array, $result);
     }
 
     /**
@@ -78,7 +78,7 @@ class ArrayToStringDataTransformerTest extends \PHPUnit_Framework_TestCase
     {
         $result = $this->transformer->reverseTransform($array);
 
-        $this->assertEquals($string, $result);
+        static::assertEquals($string, $result);
     }
 
     /**
