@@ -41,6 +41,6 @@ class SkipUrlsDecorator implements DecoratorInterface
      */
     protected function removeUrls($string)
     {
-        return preg_replace(self::REGEX_URL, '', $string);
+        return trim(preg_replace(self::REGEX_URL, '', $string));
     }
 }

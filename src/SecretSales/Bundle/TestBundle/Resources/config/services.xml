@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="ss.provider.container.class">SecretSales\Bundle\TestBundle\Provider\ProviderContainer</parameter>
+        <parameter key="ss.oauth.twitter.class">Abraham\TwitterOAuth\TwitterOAuth</parameter>
         <parameter key="ss.provider.twitter.class">SecretSales\Bundle\TestBundle\Provider\TwitterProvider</parameter>
         <parameter key="ss.formatter.twitter_response.class">SecretSales\Bundle\TestBundle\Formatter\TwitterResponseFormatter</parameter>
         <parameter key="ss.datatransformer.array_to_string.class">SecretSales\Bundle\TestBundle\DataTransformer\ArrayToStringDataTransformer</parameter>
@@ -26,11 +27,14 @@
         </service>
         <service id="ss.formatter.twitter_response" class="%ss.formatter.twitter_response.class%" />
         <service id="ss.provider.container" class="%ss.provider.container.class%" />
-        <service id="ss.provider.twitter" class="%ss.provider.twitter.class%">
+        <service id="ss.oauth.twitter" class="%ss.oauth.twitter.class%">
             <argument type="string">%ss.twitter.consumer_key%</argument>
             <argument type="string">%ss.twitter.consumer_secret%</argument>
             <argument type="string">%ss.twitter.access_token%</argument>
             <argument type="string">%ss.twitter.access_token_secret%</argument>
+        </service>
+        <service id="ss.provider.twitter" class="%ss.provider.twitter.class%">
+            <argument type="service" id="ss.oauth.twitter" />
             <argument type="service" id="ss.formatter.twitter_response" />
             <tag name="ss.provider" />
         </service>

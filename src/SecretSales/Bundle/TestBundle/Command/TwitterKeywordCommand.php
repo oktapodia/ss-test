@@ -25,8 +25,7 @@ use Symfony\Component\Console\Question\Question;
  */
 class TwitterKeywordCommand extends ContainerAwareCommand
 {
-    const DEFAULT_TWEETS_NUMBER = 100;
-
+    const DEFAULT_TWEETS_NUMBER             = 100;
     const ARGUMENT_ACCOUNT_NAME             = 'accountName';
     const ARGUMENT_DESCRIPTION_ACCOUNT_NAME = 'Which twitter account name?';
     const OPTION_SKIP_URLS                  = 'skipUrls';
@@ -131,10 +130,11 @@ class TwitterKeywordCommand extends ContainerAwareCommand
         $postsNumber = count($posts);
 
         if ($postsNumber < $this->tweetsNumber) {
-            $output->writeln(sprintf('<comment>The user "%s" just have %d tweets. (%d expected)</comment>', $this->accountName, $postsNumber, $this->tweetsNumber));
+            $output->writeln(sprintf('<comment>The user "%s" only have %d tweets</comment>', $this->accountName, $postsNumber));
         }
 
-        $container           = $this->getContainer();
+        $output->writeln(sprintf('<comment>%d tweets will be displayed</comment>', $postsNumber));
+        $container = $this->getContainer();
 
         if ($this->skipUrls) {
             $skipUrlsDecorator = $container->get('ss.decorator.skip_urls');

@@ -22,11 +22,11 @@ class TwitterResponseFormatter implements FormatterInterface
     {
         $items = array_map(function ($item) use ($method) {
             if (!($item instanceof \stdClass)) {
-                return null;
+                throw new \InvalidArgumentException(sprintf('A stdClass object is expected, %s given', gettype($item)));
             }
 
             if (!property_exists($item, $method)) {
-                return null;
+                throw new \InvalidArgumentException(sprintf('The property "%s" does not exist in the stdClass object', $method));
             }
 
             return $item->$method;

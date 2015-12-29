@@ -17,7 +17,7 @@ use SecretSales\Bundle\TestBundle\Comparator\ComparatorInterface;
  *
  * Class FrequencySorter
  */
-class FrequencySorter
+class FrequencySorter implements SorterInterface
 {
     /**
      * @var ComparatorInterface
@@ -35,9 +35,7 @@ class FrequencySorter
     }
 
     /**
-     * @param array $items
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function sort(array $items)
     {

@@ -34,15 +34,12 @@ class TwitterProvider extends AbstractProvider
     /**
      * Constructor
      *
-     * @param string             $twitterConsumerKey
-     * @param string             $twitterConsumerSecret
-     * @param string             $twitterAccessToken
-     * @param string             $twitterAccessTokenSecret
+     * @param TwitterOAuth       $twitterOauth
      * @param FormatterInterface $formatter
      */
-    public function __construct($twitterConsumerKey, $twitterConsumerSecret, $twitterAccessToken, $twitterAccessTokenSecret, FormatterInterface $formatter)
+    public function __construct(TwitterOAuth $twitterOauth, FormatterInterface $formatter)
     {
-        $this->twitterOauth = new TwitterOAuth($twitterConsumerKey, $twitterConsumerSecret, $twitterAccessToken, $twitterAccessTokenSecret);
+        $this->twitterOauth = $twitterOauth;
         $this->formatter    = $formatter;
     }
 
@@ -52,7 +49,7 @@ class TwitterProvider extends AbstractProvider
     public function getNLatestPosts($postsNumber, $accountName)
     {
         if (!$this->checkAccount($accountName)) {
-            return null;
+            return array();
         }
 
         $posts = $this->twitterOauth->get('statuses/user_timeline', array(
@@ -88,8 +85,9 @@ class TwitterProvider extends AbstractProvider
     public function checkCredentials()
     {
         $application = $this->twitterOauth->get("account/verify_credentials");
+
         if (isset($application->errors)) {
-            throw new BadAuthenticationException(sprintf('An error occured during the authentication : %s', implode(',', $this->parseErrors($application->errors))));
+            throw new BadAuthenticationException(sprintf('An error occured during the authentication : %s', implode(', ', $this->parseErrors($application->errors))));
         }
 
         return true;
@@ -112,7 +110,7 @@ class TwitterProvider extends AbstractProvider
      *
      * @return bool
      */
-    protected function parseErrors(array $errors, $inline = false, $delimiter = ',')
+    protected function parseErrors(array $errors, $inline = false, $delimiter = ', ')
     {
         $errorsParsed = $this->formatter->format($errors, 'message');
 
