@@ -17,15 +17,4 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  */
 class BadAuthenticationException extends AccessDeniedHttpException
 {
-    /**
-     * BadAuthenticationException constructor.
-     *
-     * @param string|null     $message
-     * @param \Exception|null $previous
-     * @param int             $code
-     */
-    public function __construct($message = null, \Exception $previous = null, $code = 0)
-    {
-        parent::__construct($message, $previous, $code);
-    }
 }
