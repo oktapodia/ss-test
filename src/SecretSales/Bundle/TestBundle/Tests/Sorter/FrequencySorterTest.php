@@ -1,20 +1,19 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Tests\Sorter;
 
 use SecretSales\Bundle\TestBundle\Comparator\ReverseNumericComparator;
 use SecretSales\Bundle\TestBundle\Sorter\FrequencySorter;
 
 /**
- * Class FrequencySorterTest
+ * Class FrequencySorterTest.
  */
 class FrequencySorterTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,11 +23,11 @@ class FrequencySorterTest extends \PHPUnit_Framework_TestCase
     private $frequencySorter;
 
     /**
-     * SetUp
+     * SetUp.
      */
     protected function setUp()
     {
-        $comparator            = new ReverseNumericComparator();
+        $comparator = new ReverseNumericComparator();
         $this->frequencySorter = new FrequencySorter($comparator);
     }
 

@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('secret_sales_test');
+        $rootNode = $treeBuilder->root('secret_sales_test');
         $rootNode
             ->children()
                 ->arrayNode('providers')
@@ -40,7 +40,7 @@ class Configuration implements ConfigurationInterface
     protected function twitterProviderTreeBuilder()
     {
         $builder = new TreeBuilder();
-        $node    = $builder->root('twitter');
+        $node = $builder->root('twitter');
         $node
             ->children()
                 ->scalarNode('consumer_key')->isRequired()->cannotBeEmpty()->end()

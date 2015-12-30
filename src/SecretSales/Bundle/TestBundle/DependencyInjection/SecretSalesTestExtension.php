@@ -20,7 +20,7 @@ class SecretSalesTestExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $config        = $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $configs);
 
         $this->configureParametersFromConfigurations($config, $container);
 
@@ -29,7 +29,7 @@ class SecretSalesTestExtension extends Extension
     }
 
     /**
-     * Convert the secret_sales_test configuration in config.yml to parameters
+     * Convert the secret_sales_test configuration in config.yml to parameters.
      *
      * @param array            $config
      * @param ContainerBuilder $container

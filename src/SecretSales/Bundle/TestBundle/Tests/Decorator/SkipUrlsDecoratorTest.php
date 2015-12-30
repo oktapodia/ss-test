@@ -1,19 +1,18 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Tests\Decorator;
 
 use SecretSales\Bundle\TestBundle\Decorator\SkipUrlsDecorator;
 
 /**
- * Class SkipUrlsDecoratorTest
+ * Class SkipUrlsDecoratorTest.
  */
 class SkipUrlsDecoratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,7 +25,7 @@ class SkipUrlsDecoratorTest extends \PHPUnit_Framework_TestCase
     public function testDecorate($value, $expected)
     {
         $decorator = new SkipUrlsDecorator();
-        $result    = $decorator->decorate($value);
+        $result = $decorator->decorate($value);
         static::assertEquals($expected, $result);
     }
 
@@ -42,15 +41,15 @@ class SkipUrlsDecoratorTest extends \PHPUnit_Framework_TestCase
 
         return array(
             array(
-                'value'    => 'I\'m a test sentence with an url https://secretsales.com/',
+                'value' => 'I\'m a test sentence with an url https://secretsales.com/',
                 'expected' => 'I\'m a test sentence with an url',
             ),
             array(
-                'value'    => 'I\'m a test sentence without an url',
+                'value' => 'I\'m a test sentence without an url',
                 'expected' => 'I\'m a test sentence without an url',
             ),
             array(
-                'value'    => array(
+                'value' => array(
                     'I\'m a test sentence with an url https://secretsales.com/',
                     'I\'m a second test sentence with an url https://secretsales.com/',
                     'I\'m a third test sentence without an url',
@@ -62,7 +61,7 @@ class SkipUrlsDecoratorTest extends \PHPUnit_Framework_TestCase
                 ),
             ),
             array(
-                'value'    => array(
+                'value' => array(
                     'I\'m a test sentence with an url https://secretsales.com/',
                     'I\'m a second test sentence with an url https://secretsales.com/',
                     'I\'m a third test sentence without an url',
@@ -74,7 +73,7 @@ class SkipUrlsDecoratorTest extends \PHPUnit_Framework_TestCase
                 ),
             ),
             array(
-                'value'    =>$object,
+                'value' => $object,
                 'expected' => null,
             ),
         );

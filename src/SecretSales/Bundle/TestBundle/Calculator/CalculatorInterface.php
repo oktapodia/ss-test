@@ -1,22 +1,21 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Calculator;
 
 /**
- * Interface CalculatorInterface
+ * Interface CalculatorInterface.
  */
 interface CalculatorInterface
 {
     /**
-     * Initialize the calculator with an array to process
+     * Initialize the calculator with an array to process.
      *
      * @param array $posts
      *
@@ -25,7 +24,7 @@ interface CalculatorInterface
     public function initialize(array $posts);
 
     /**
-     * Calculate and return the result
+     * Calculate and return the result.
      *
      * @return mixed
      */

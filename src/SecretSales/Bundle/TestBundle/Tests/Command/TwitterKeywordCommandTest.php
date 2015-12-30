@@ -1,13 +1,12 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Tests\Command;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -18,7 +17,7 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * Class TwitterKeywordCommand
+ * Class TwitterKeywordCommand.
  */
 class TwitterKeywordCommandTest extends WebTestCase
 {
@@ -45,7 +44,7 @@ class TwitterKeywordCommandTest extends WebTestCase
     protected $fixtures;
 
     /**
-     * SetUp
+     * SetUp.
      */
     public function setUp()
     {
@@ -53,8 +52,8 @@ class TwitterKeywordCommandTest extends WebTestCase
         static::$kernel->boot();
 
         //Override the twitterOauth service
-        $this->fixtures      = new TwitterResponseFixtures();
-        $this->twitterOauth  = \Phake::mock(TwitterOAuth::class);
+        $this->fixtures = new TwitterResponseFixtures();
+        $this->twitterOauth = \Phake::mock(TwitterOAuth::class);
 
         $this->setTweetsNumber(100);
         static::$kernel->getContainer()->set('ss.oauth.twitter', $this->twitterOauth);
@@ -69,7 +68,7 @@ class TwitterKeywordCommandTest extends WebTestCase
     }
 
     /**
-     * Test execute with an account name in command
+     * Test execute with an account name in command.
      */
     public function testExecuteWithAccountNameInCommand()
     {
@@ -82,7 +81,7 @@ class TwitterKeywordCommandTest extends WebTestCase
     }
 
     /**
-     * Test execute with an account name in command and Only one tweet
+     * Test execute with an account name in command and Only one tweet.
      */
     public function testExecuteWithAccountNameInCommandAndOneTweet()
     {
@@ -90,8 +89,8 @@ class TwitterKeywordCommandTest extends WebTestCase
         $this->setTweetsNumber($tweetsNumber);
         $commandTester = new CommandTester($this->command);
         $commandTester->execute(array(
-            'command'                                        => $this->command->getName(),
-            TwitterKeywordCommand::ARGUMENT_ACCOUNT_NAME     => $this->parameters['account_name'],
+            'command' => $this->command->getName(),
+            TwitterKeywordCommand::ARGUMENT_ACCOUNT_NAME => $this->parameters['account_name'],
             '--'.TwitterKeywordCommand::OPTION_TWEETS_NUMBER => $tweetsNumber,
         ));
 
@@ -115,7 +114,7 @@ an,1/', $commandTester->getDisplay());
     }
 
     /**
-     * Test execute without an account name in the command
+     * Test execute without an account name in the command.
      */
     public function testExecuteWithoutAccountName()
     {
@@ -132,7 +131,7 @@ an,1/', $commandTester->getDisplay());
     }
 
     /**
-     * Test execute with an account name and skip urls option
+     * Test execute with an account name and skip urls option.
      */
     public function testExecuteWithAccountNameAndSkipUrlsOption()
     {
@@ -141,11 +140,10 @@ an,1/', $commandTester->getDisplay());
 
         $commandTester = new CommandTester($this->command);
         $commandTester->execute(array(
-            'command'                                    => $this->command->getName(),
+            'command' => $this->command->getName(),
             TwitterKeywordCommand::ARGUMENT_ACCOUNT_NAME => $this->parameters['account_name'],
             '--'.TwitterKeywordCommand::OPTION_SKIP_URLS,
         ));
-
 
         $this->runBaseAssertions($commandTester);
         static::assertRegExp('
@@ -165,7 +163,6 @@ multiple,10
 occurences,10
 I\'m,10
 an,10/', $commandTester->getDisplay());
-
     }
 
     /**

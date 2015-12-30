@@ -1,13 +1,12 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Command;
 
 use SecretSales\Bundle\TestBundle\Provider\ProviderContainer;
@@ -21,15 +20,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
 /**
- * Class TwitterKeywordCommand
+ * Class TwitterKeywordCommand.
  */
 class TwitterKeywordCommand extends ContainerAwareCommand
 {
-    const DEFAULT_TWEETS_NUMBER             = 100;
-    const ARGUMENT_ACCOUNT_NAME             = 'accountName';
+    const DEFAULT_TWEETS_NUMBER = 100;
+    const ARGUMENT_ACCOUNT_NAME = 'accountName';
     const ARGUMENT_DESCRIPTION_ACCOUNT_NAME = 'Which twitter account name?';
-    const OPTION_SKIP_URLS                  = 'skipUrls';
-    const OPTION_TWEETS_NUMBER              = 'tweetsNumber';
+    const OPTION_SKIP_URLS = 'skipUrls';
+    const OPTION_TWEETS_NUMBER = 'tweetsNumber';
 
     /**
      * @var string
@@ -85,7 +84,7 @@ class TwitterKeywordCommand extends ContainerAwareCommand
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $providerContainer = $this->getContainer()->get(ProviderContainer::PROVIDER_CONTAINER);
-        $this->provider    = $providerContainer->getProvider(TwitterProvider::NAME);
+        $this->provider = $providerContainer->getProvider(TwitterProvider::NAME);
 
         if (!$this->provider->checkCredentials()) {
             return;
@@ -106,7 +105,7 @@ class TwitterKeywordCommand extends ContainerAwareCommand
         }
 
         if (!($accountName = $input->getArgument(self::ARGUMENT_ACCOUNT_NAME))) {
-            $helper   = $this->getHelper('question');
+            $helper = $this->getHelper('question');
             $question = new Question(self::ARGUMENT_DESCRIPTION_ACCOUNT_NAME);
 
             if ($accountName = $helper->ask($input, $output, $question)) {
@@ -126,7 +125,7 @@ class TwitterKeywordCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $posts       = $this->provider->getNLatestPosts(100, $this->accountName);
+        $posts = $this->provider->getNLatestPosts(100, $this->accountName);
         $postsNumber = count($posts);
 
         if ($postsNumber < $this->tweetsNumber) {
@@ -138,21 +137,21 @@ class TwitterKeywordCommand extends ContainerAwareCommand
 
         if ($this->skipUrls) {
             $skipUrlsDecorator = $container->get('ss.decorator.skip_urls');
-            $posts             = $skipUrlsDecorator->decorate($posts);
+            $posts = $skipUrlsDecorator->decorate($posts);
         }
 
         $frequencyCalculator = $container->get('ss.calculator.frequency');
-        $frequencySorter     = $container->get('ss.sorter.frequency');
+        $frequencySorter = $container->get('ss.sorter.frequency');
 
         $frequencyCalculator->initialize($posts);
-        $wordsFrequency      = $frequencySorter->sort($frequencyCalculator->calculate());
+        $wordsFrequency = $frequencySorter->sort($frequencyCalculator->calculate());
 
         $output->writeln(sprintf('<info>%d words</info>', count($wordsFrequency)));
         $this->displayResult($wordsFrequency, $output);
     }
 
     /**
-     * Display the result with the asked formatting
+     * Display the result with the asked formatting.
      *
      * @param array           $data
      * @param OutputInterface $output
