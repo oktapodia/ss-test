@@ -10,6 +10,7 @@ Requirements
 ------------
 
 * PHP 5.6
+* PHP curl
 
 OPTIONS
 -------
