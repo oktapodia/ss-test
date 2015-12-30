@@ -1,19 +1,18 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Tests\Helpers;
 
 use ReflectionClass;
 
 /**
- * Class BasePHPUnitTestCase
+ * Class BasePHPUnitTestCase.
  */
 class BasePHPUnitTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -27,7 +26,7 @@ class BasePHPUnitTestCase extends \PHPUnit_Framework_TestCase
     protected static function invokeMethod($class, $name, $parameters)
     {
         $reflectionClass = new ReflectionClass($class);
-        $method          = $reflectionClass->getMethod($name);
+        $method = $reflectionClass->getMethod($name);
         $method->setAccessible(true);
 
         return $method->invokeArgs($class, $parameters);

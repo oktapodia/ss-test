@@ -1,27 +1,26 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Tests\Comparator;
 
 use SecretSales\Bundle\TestBundle\Comparator\ReverseNumericComparator;
 
 /**
- * Class ReverseNumericComparatorTest
+ * Class ReverseNumericComparatorTest.
  */
 class ReverseNumericComparatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider getProvider
      *
-     * @param array   $data
-     * @param integer $expected
+     * @param array $data
+     * @param int   $expected
      */
     public function testCompare($data, $expected)
     {

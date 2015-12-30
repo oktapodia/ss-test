@@ -1,20 +1,19 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
- * Transform an array to a string
+ * Transform an array to a string.
  *
  * Class ArrayToStringDataTransformer
  */
@@ -28,7 +27,7 @@ class ArrayToStringDataTransformer implements DataTransformerInterface
     public function transform($value)
     {
         if (empty($value)) {
-            return null;
+            return;
         }
 
         if (!is_string($value)) {
@@ -44,7 +43,7 @@ class ArrayToStringDataTransformer implements DataTransformerInterface
     public function reverseTransform($value)
     {
         if (empty($value)) {
-            return null;
+            return;
         }
 
         if (!is_array($value)) {

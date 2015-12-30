@@ -1,13 +1,12 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Provider;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -16,7 +15,7 @@ use SecretSales\Bundle\TestBundle\Exception\BadAuthenticationException;
 use SecretSales\Bundle\TestBundle\Formatter\FormatterInterface;
 
 /**
- * Class TwitterProvider
+ * Class TwitterProvider.
  */
 class TwitterProvider extends AbstractProvider
 {
@@ -32,7 +31,7 @@ class TwitterProvider extends AbstractProvider
     private $formatter;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param TwitterOAuth       $twitterOauth
      * @param FormatterInterface $formatter
@@ -40,7 +39,7 @@ class TwitterProvider extends AbstractProvider
     public function __construct(TwitterOAuth $twitterOauth, FormatterInterface $formatter)
     {
         $this->twitterOauth = $twitterOauth;
-        $this->formatter    = $formatter;
+        $this->formatter = $formatter;
     }
 
     /**
@@ -51,11 +50,11 @@ class TwitterProvider extends AbstractProvider
         $this->checkAccount($accountName);
 
         $posts = $this->twitterOauth->get('statuses/user_timeline', array(
-            'screen_name'         => $accountName,
-            'exclude_replies'     => 'true',
-            'include_rts'         => 'false',
+            'screen_name' => $accountName,
+            'exclude_replies' => 'true',
+            'include_rts' => 'false',
             'contributor_details' => 'false',
-            'count'               => $postsNumber,
+            'count' => $postsNumber,
         ));
 
         return $this->extractPosts($posts);
@@ -82,7 +81,7 @@ class TwitterProvider extends AbstractProvider
      */
     public function checkCredentials()
     {
-        $application = $this->twitterOauth->get("account/verify_credentials");
+        $application = $this->twitterOauth->get('account/verify_credentials');
 
         if (isset($application->errors)) {
             throw new BadAuthenticationException(sprintf('An error occurred during the authentication : %s', implode(', ', $this->parseErrors($application->errors))));

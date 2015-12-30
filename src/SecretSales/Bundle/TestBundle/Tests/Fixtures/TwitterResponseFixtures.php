@@ -1,17 +1,16 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\Tests\Fixtures;
 
 /**
- * Class TwitterResponseFixtures
+ * Class TwitterResponseFixtures.
  */
 class TwitterResponseFixtures
 {
@@ -67,7 +66,7 @@ class TwitterResponseFixtures
     public function getFixtureArray($limit = 100)
     {
         $items = array();
-        for ($i=0; $i < $limit; $i++) {
+        for ($i = 0; $i < $limit; ++$i) {
             array_push($items, $this->getValidFixture());
         }
 
@@ -82,7 +81,7 @@ class TwitterResponseFixtures
     public function getFixtureExpectedArray($limit = 100)
     {
         $items = array();
-        for ($i=0; $i < $limit; $i++) {
+        for ($i = 0; $i < $limit; ++$i) {
             array_push($items, $this->getValidExpectedFixture());
         }
 

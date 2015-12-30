@@ -1,13 +1,12 @@
 <?php
 /**
- * This file is part of the test project
+ * This file is part of the test project.
  *
  * (c) BRAMILLE Sébastien <sebastien.bramille@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SecretSales\Bundle\TestBundle\DependencyInjection\CompilerPass;
 
 use SecretSales\Bundle\TestBundle\Provider\ProviderContainer;
@@ -16,17 +15,17 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Automatically add providers with tagged service
+ * Automatically add providers with tagged service.
  *
  * Class HydrateProviderContainerCompilerPass
  */
 class HydrateProviderContainerCompilerPass implements CompilerPassInterface
 {
-    const METHOD_CALLED       = 'addProvider';
-    const PROVIDER_TAG        = 'ss.provider';
+    const METHOD_CALLED = 'addProvider';
+    const PROVIDER_TAG = 'ss.provider';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {
